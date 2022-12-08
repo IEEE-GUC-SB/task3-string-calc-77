@@ -10,7 +10,13 @@ public class Calculator {
             return Integer.parseInt(s);
         if (s.length() == 3)
             return Integer.parseInt("" + s.charAt(0)) + Integer.parseInt("" + s.charAt(2));
-        return -1;
+
+        int sum = 0;
+        String[] nums = s.split(",");
+        for (String num : nums)
+            sum += Integer.parseInt(num);
+
+        return sum;
     }
 
 }
