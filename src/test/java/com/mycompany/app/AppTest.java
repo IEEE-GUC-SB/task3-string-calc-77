@@ -25,4 +25,12 @@ public class AppTest {
         String s = "1";
         assertEquals(1, calc.evaluateString(s));
     }
+
+    @Test
+    public void testStringWithTwoNumbers() {
+        Calculator calc = new Calculator();
+
+        String s = "1,2";
+        assertEquals(3, calc.evaluateString(s));
+    }
 }
