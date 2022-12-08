@@ -62,4 +62,12 @@ public class AppTest {
         String s = "//;\n10000000;200;3;3543";
         assertEquals(203, calc.evaluateString(s));
     }
+
+    @Test
+    public void testStringWithDelimitersOfAnyLength() throws Exception {
+        Calculator calc = new Calculator();
+
+        String s = "//[***]\n1***2***3";
+        assertEquals(6, calc.evaluateString(s));
+    }
 }
