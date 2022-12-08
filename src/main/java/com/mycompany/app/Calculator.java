@@ -4,22 +4,8 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class Calculator {
-    Map<String, String> operators;
 
     public int evaluateString(String s) throws Exception {
-        // operators.put("-","-");
-        // operators.put("+","\\+");
-        // operators.put("/","/");
-        // operators.put(,"\\");
-        // operators.put("-","-");
-        // operators.put("-","-");
-        // operators.put("-","-");
-        // reservedOperators.add("\\+");
-        // reservedOperators.add("/");
-        // reservedOperators.add("\\");
-        // reservedOperators.add("x");
-        // reservedOperators.add("\\^");
-        // reservedOperators.add("X");
         if (s.equals(""))
             return 0;
 
@@ -46,17 +32,18 @@ public class Calculator {
             }
         }
 
-        System.out.println(delimiter);
         s = s.replace("\n", delimiter);
-        System.out.println(s + " s");
-        String[] nums = s.split(delimiter);
+        String[] nums = s.split("[" + delimiter + "]");
 
         HashSet<Integer> negatives = getNegatives(nums);
         if (!negatives.isEmpty())
             throw new Exception("Negatives are not allowed. Negatives found are: " + negatives.toString());
+
         for (String num : nums) {
-            int number = Integer.parseInt(num);
-            sum += number > 1000 ? 0 : number;
+            if (num.length() > 0) {
+                int number = Integer.parseInt(num);
+                sum += number > 1000 ? 0 : number;
+            }
         }
 
         return sum;
@@ -65,26 +52,20 @@ public class Calculator {
     public HashSet<Integer> getNegatives(String[] nums) {
         HashSet<Integer> hs = new HashSet<>();
         for (int i = 0; i < nums.length; i++) {
-            int number = Integer.parseInt(nums[i]);
-            if (number < 0)
-                hs.add(number);
+            if (nums[i].length() > 0) {
+                int number = Integer.parseInt(nums[i]);
+                if (number < 0)
+                    hs.add(number);
+            }
         }
 
         return hs;
     }
 
-    // public String[] removeDelimeter(String s, delimiter) {
-
-    // }
-
     public static void main(String[] args) throws Exception {
         Calculator calc = new Calculator();
         String s = "//[***]\n1***2***3";
         System.out.println(calc.evaluateString(s));
-        // String[] nums = s.split("\\*");
-        // for (String ss : nums)
-        //     System.out.print(ss);
-        // System.out.println();
     }
 
 }
