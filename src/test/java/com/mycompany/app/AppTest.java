@@ -8,7 +8,7 @@ import org.junit.Test;
 public class AppTest {
 
     @Test
-    public void testEmptyString() {
+    public void testEmptyString() throws Exception {
         Calculator calc = new Calculator();
 
         String s = "";
@@ -16,7 +16,7 @@ public class AppTest {
     }
 
     @Test
-    public void testStringWithOneNumber() {
+    public void testStringWithOneNumber() throws Exception {
         Calculator calc = new Calculator();
 
         String s = "1";
@@ -24,7 +24,7 @@ public class AppTest {
     }
 
     @Test
-    public void testStringWithTwoNumbers() {
+    public void testStringWithTwoNumbers() throws Exception {
         Calculator calc = new Calculator();
 
         String s = "1,2";
@@ -32,7 +32,7 @@ public class AppTest {
     }
 
     @Test
-    public void testStringWithUnknownAmountOfNumbers() {
+    public void testStringWithUnknownAmountOfNumbers() throws Exception {
         Calculator calc = new Calculator();
 
         String s = "1,2,3,4";
@@ -40,7 +40,7 @@ public class AppTest {
     }
 
     @Test
-    public void testStringWithNumbersSeperatedWithCommasAndNewLines() {
+    public void testStringWithNumbersSeperatedWithCommasAndNewLines() throws Exception {
         Calculator calc = new Calculator();
 
         String s = "1\n2,3";
@@ -48,7 +48,7 @@ public class AppTest {
     }
 
     @Test
-    public void testStringWithCertainDelimiter() {
+    public void testStringWithCertainDelimiter() throws Exception {
         Calculator calc = new Calculator();
 
         String s = "//;\n1;2";
