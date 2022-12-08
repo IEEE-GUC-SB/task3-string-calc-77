@@ -1,5 +1,8 @@
 package com.mycompany.app;
 
+import java.lang.reflect.Array;
+import java.util.*;
+
 public class Calculator {
 
     public int evaluateString(String s) {
@@ -12,8 +15,16 @@ public class Calculator {
             return Integer.parseInt("" + s.charAt(0)) + Integer.parseInt("" + s.charAt(2));
 
         int sum = 0;
-        s = s.replace("\n", ",");
-        String[] nums = s.split(",");
+        String delimiter = ",";
+
+        if (s.charAt(0) == '/') {
+            delimiter = "" + s.charAt(2);
+            s = s.substring(4, s.length());
+        }
+
+        s = s.replace("\n", delimiter);
+        String[] nums = s.split(delimiter);
+        System.out.println(Arrays.toString(nums) + " " + delimiter);
         for (String num : nums)
             sum += Integer.parseInt(num);
 
