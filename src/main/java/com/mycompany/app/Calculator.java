@@ -27,8 +27,10 @@ public class Calculator {
         HashSet<Integer> negatives = getNegatives(nums);
         if (!negatives.isEmpty())
             throw new Exception("Negatives are not allowed. Negatives found are: " + negatives.toString());
-        for (String num : nums)
-            sum += Integer.parseInt(num);
+        for (String num : nums) {
+            int number = Integer.parseInt(num);
+            sum += number > 1000 ? 0 : number;
+        }
 
         return sum;
     }
