@@ -14,6 +14,15 @@ public class AppTest {
     public void testEmptyString() {
         Calculator calc = new Calculator();
 
-        assertEquals(0, calc.evaluateString(""));
+        String s = "";
+        assertEquals(0, calc.evaluateString(s));
+    }
+
+    @Test
+    public void testStringWithOneNumber() {
+        Calculator calc = new Calculator();
+
+        String s = "1";
+        assertEquals(1, calc.evaluateString(s));
     }
 }
