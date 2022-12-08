@@ -33,4 +33,12 @@ public class AppTest {
         String s = "1,2";
         assertEquals(3, calc.evaluateString(s));
     }
+
+    @Test
+    public void testStringWithUnkownAmountOfNumbers() {
+        Calculator calc = new Calculator();
+
+        String s = "1,2,3,4";
+        assertEquals(10, calc.evaluateString(s));
+    }
 }
