@@ -35,10 +35,18 @@ public class AppTest {
     }
 
     @Test
-    public void testStringWithUnkownAmountOfNumbers() {
+    public void testStringWithUnknownAmountOfNumbers() {
         Calculator calc = new Calculator();
 
         String s = "1,2,3,4";
         assertEquals(10, calc.evaluateString(s));
+    }
+
+    @Test
+    public void testStringWithNumbersSeperatedWithCommasAndNewLines() {
+        Calculator calc = new Calculator();
+
+        String s = "1\n2,3";
+        assertEquals(6, calc.evaluateString(s));
     }
 }
