@@ -54,4 +54,12 @@ public class AppTest {
         String s = "//;\n1;2";
         assertEquals(3, calc.evaluateString(s));
     }
+
+    @Test
+    public void testStringWithNumbersGreaterThanThousand() throws Exception {
+        Calculator calc = new Calculator();
+
+        String s = "//;\n10000000;200;3;3543";
+        assertEquals(203, calc.evaluateString(s));
+    }
 }
