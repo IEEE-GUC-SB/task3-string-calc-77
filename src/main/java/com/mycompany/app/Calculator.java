@@ -12,6 +12,7 @@ public class Calculator {
             return Integer.parseInt("" + s.charAt(0)) + Integer.parseInt("" + s.charAt(2));
 
         int sum = 0;
+        s = s.replace("\n", ",");
         String[] nums = s.split(",");
         for (String num : nums)
             sum += Integer.parseInt(num);
