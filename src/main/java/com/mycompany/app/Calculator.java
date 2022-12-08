@@ -4,8 +4,22 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class Calculator {
+    Map<String, String> operators;
 
     public int evaluateString(String s) throws Exception {
+        // operators.put("-","-");
+        // operators.put("+","\\+");
+        // operators.put("/","/");
+        // operators.put(,"\\");
+        // operators.put("-","-");
+        // operators.put("-","-");
+        // operators.put("-","-");
+        // reservedOperators.add("\\+");
+        // reservedOperators.add("/");
+        // reservedOperators.add("\\");
+        // reservedOperators.add("x");
+        // reservedOperators.add("\\^");
+        // reservedOperators.add("X");
         if (s.equals(""))
             return 0;
 
@@ -18,12 +32,25 @@ public class Calculator {
         String delimiter = ",";
 
         if (s.charAt(0) == '/') {
-            delimiter = "" + s.charAt(2);
-            s = s.substring(4, s.length());
+            if (s.charAt(2) != '[') {
+                delimiter = "" + s.charAt(2);
+                s = s.substring(4, s.length());
+            } else if (s.charAt(2) == '[') {
+                delimiter = "";
+                int i = 3;
+                while (s.charAt(i) != ']') {
+                    delimiter += s.charAt(i++);
+                }
+
+                s = s.substring(i + 2, s.length());
+            }
         }
 
+        System.out.println(delimiter);
         s = s.replace("\n", delimiter);
+        System.out.println(s + " s");
         String[] nums = s.split(delimiter);
+
         HashSet<Integer> negatives = getNegatives(nums);
         if (!negatives.isEmpty())
             throw new Exception("Negatives are not allowed. Negatives found are: " + negatives.toString());
@@ -46,10 +73,18 @@ public class Calculator {
         return hs;
     }
 
+    // public String[] removeDelimeter(String s, delimiter) {
+
+    // }
+
     public static void main(String[] args) throws Exception {
         Calculator calc = new Calculator();
-        String s = "//;\n1;2;-3;-5;4;-8";
+        String s = "//[***]\n1***2***3";
         System.out.println(calc.evaluateString(s));
+        // String[] nums = s.split("\\*");
+        // for (String ss : nums)
+        //     System.out.print(ss);
+        // System.out.println();
     }
 
 }
