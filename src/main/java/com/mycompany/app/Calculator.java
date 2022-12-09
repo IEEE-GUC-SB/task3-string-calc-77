@@ -15,26 +15,37 @@ public class Calculator {
             return Integer.parseInt("" + s.charAt(0)) + Integer.parseInt("" + s.charAt(2));
 
         int sum = 0;
-        String delimiter = ",";
+        ArrayList<String> delimiter = new ArrayList<>();
+        delimiter.add(",");
 
         if (s.charAt(0) == '/') {
             if (s.charAt(2) != '[') {
-                delimiter = "" + s.charAt(2);
+                delimiter.clear();
+                delimiter.add("" + s.charAt(2));
                 s = s.substring(4, s.length());
             } else if (s.charAt(2) == '[') {
-                delimiter = "";
+                delimiter.clear();
+                String currentDelimiter = "";
                 int i = 3;
-                while (s.charAt(i) != ']') {
-                    delimiter += s.charAt(i++);
+                while (s.charAt(i) != '\n') {
+                    if (s.charAt(i) != '[' && s.charAt(i) != ']') {
+                        currentDelimiter += s.charAt(i);
+                    } else if (s.charAt(i) == ']') {
+                        delimiter.add(currentDelimiter);
+                        currentDelimiter = "";
+                    }
+                    i++;
                 }
 
-                s = s.substring(i + 2, s.length());
+                System.out.println((delimiter.toString()) + " delimiter");
+
+                s = s.substring(i + 1, s.length());
             }
         }
 
-        s = s.replace("\n", delimiter);
+        s = s.replace("\n", delimiter.get(0));
         String[] nums = s.split("[" + delimiter + "]");
-
+        System.out.println(Arrays.toString(nums) + " nums");
         HashSet<Integer> negatives = getNegatives(nums);
         if (!negatives.isEmpty())
             throw new Exception("Negatives are not allowed. Negatives found are: " + negatives.toString());
@@ -64,7 +75,7 @@ public class Calculator {
 
     public static void main(String[] args) throws Exception {
         Calculator calc = new Calculator();
-        String s = "//[***]\n1***2***3";
+        String s = "//[*][%]\n1*2%3";
         System.out.println(calc.evaluateString(s));
     }
 

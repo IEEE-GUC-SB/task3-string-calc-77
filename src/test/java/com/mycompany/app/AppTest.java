@@ -70,4 +70,12 @@ public class AppTest {
         String s = "//[***]\n1***2***3";
         assertEquals(6, calc.evaluateString(s));
     }
+
+    @Test
+    public void testStringWithMultipleDelimiters() throws Exception {
+        Calculator calc = new Calculator();
+
+        String s = "//[*][%]\n1*2%3";
+        assertEquals(6, calc.evaluateString(s));
+    }
 }
